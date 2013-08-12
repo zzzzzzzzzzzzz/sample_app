@@ -7,6 +7,7 @@ group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem "spork", "> 0.9.0.rc"
+  gem "guard-spork"
 end
 
 # Gems used only for assets and not required
