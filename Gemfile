@@ -7,6 +7,7 @@ group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem "spork", "> 0.9.0.rc"
+  gem "guard-spork"
 end
 
 # Gems used only for assets and not required
@@ -24,6 +25,10 @@ group :test do
   gem 'rb-fchange', '0.0.5'
   gem 'rb-notifu', '0.0.4'
   gem 'win32console', '1.3.0'
+end
+
+group :production do
+  gem 'pg', '0.12.2'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
