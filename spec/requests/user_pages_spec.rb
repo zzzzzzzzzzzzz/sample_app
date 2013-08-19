@@ -15,6 +15,7 @@ describe "User pages" do
 
     it { should have_selector('title', text: 'All users') }
     it { should have_selector('h1',    text: 'All users') }
+    
 
     describe "pagination" do
 
@@ -38,6 +39,11 @@ describe "User pages" do
         before do
           valid_signin admin
           visit users_path
+        end
+        
+        describe "admin can't delete himself" do
+          before {delete user_path(admin)}
+          specify {response.should redirect_to(users_path)}
         end
 
         it { should have_link('delete', href: user_path(User.first)) }

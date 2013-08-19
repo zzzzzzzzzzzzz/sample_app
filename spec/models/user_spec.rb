@@ -48,12 +48,6 @@ describe User do
     end
 
     it { should be_admin }
-    
-    describe "admin can't delete himself" do
-      user= @user
-      before{@user.destroy}
-      it {should == User.find_by_email(user.email)}
-    end
   end
 
   describe "when name is not present" do
