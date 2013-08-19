@@ -34,6 +34,12 @@ describe User do
 
   it { should be_valid }
   it { should_not be_admin }
+  
+  describe "accessible attributes" do
+    it "should not allow access to admin" do
+      expect {User.new(admin: true)}.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
 
   describe "with admin attribute set to 'true'" do
     before do
@@ -42,6 +48,12 @@ describe User do
     end
 
     it { should be_admin }
+    
+    describe "admin can't delete himself" do
+      user= @user
+      before{@user.destroy}
+      it {should == User.find_by_email(user.email)}
+    end
   end
 
   describe "when name is not present" do
