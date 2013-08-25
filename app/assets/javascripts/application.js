@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree
+$(document).ready(function(){
+  $('#micropost_content').bind('keypress paste click change',function(){
+    if (this.value.length>140) {
+    	this.value=this.value.slice(0,140);
+    }
+    else if (this.value.length<=140) {
+    	$("#error").html("You can type "+(140-this.value.length)+" symbols");
+    }
+  });
+});
