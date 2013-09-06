@@ -209,13 +209,22 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
     before { user.follow!(other_user) }
+    
+    describe "follower/following counts" do
+        before do 
+          valid_signin user
+          visit user_path(user)
+        end
 
+        it { should have_link("1 following", href: following_user_path(user)) }
+        it { should have_link("0 followers", href: followers_user_path(user)) }
+      end
+    
     describe "followed users" do
       before do
         valid_signin user
         visit following_user_path(user)
       end
-
       it { should have_selector('title', text: full_title('Following')) }
       it { should have_selector('h3', text: 'Following') }
       it { should have_link(other_user.name, href: user_path(other_user)) }
